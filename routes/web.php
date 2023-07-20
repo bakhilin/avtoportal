@@ -52,6 +52,13 @@ Route::name('user.')->group(function () {
         return view('admin');
     })->name('admin');
 
+    Route::get('order', function () {
+       if (Auth::check()) {
+           return view('order');
+       }
+        return view('login');
+    })->name('order');
+
     Route::post('admin', [\App\Http\Controllers\AdminController::class, 'save']);
 
     Route::get('login', function () {

@@ -24,6 +24,12 @@ class AdminController extends Controller
 
         move_uploaded_file($_FILES['linkToFile']['tmp_name'], $path);
 
+        $lastId = DB::table('avto_spare')->select('id')->get()->last();
+
+        // загрузка доп изображений
+
+
+
         return redirect()->to(route('user.admin'));
 
 

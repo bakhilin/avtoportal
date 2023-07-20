@@ -45,7 +45,9 @@ if (isset($_GET['search'])) {
                         </div>
                         <div class="col-md-8">
                             <div class="card-body text-dark">
-                                <h5 class="card-title">{{$spare->name}}</h5>
+                                <a href="{{route('avto.parts')}}?spareId={{$spare->id}}">
+                                    <h5 class="card-title">{{$spare->name}}</h5>
+                                </a>
                                 <p class="card-text">{{$spare->description}}</p>
                             </div>
                         </div>
