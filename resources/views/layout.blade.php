@@ -7,8 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{csrf_token() }}}">
     <title>@yield('page_name')</title>
-    <link rel="stylesheet" href="public/style.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="vendor/components/jquery/jquery.js">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"
+            integrity="sha256-9yRP/2EFlblE92vzCA10469Ctd0jT48HnmmMw5rJZrA=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+
 </head>
 <body class="bg-dark text-white">
 
@@ -30,8 +36,14 @@
                 <a class="me-3 py-2 link-body-emphasis text-decoration-none text-white" href="/">Главная</a>
                 <a class="me-3 py-2 link-body-emphasis text-decoration-none text-white" href="/catalog">Каталог</a>
                 @if(!\Illuminate\Support\Facades\Auth::check())
-                    <a class="me-3 py-2 link-body-emphasis text-decoration-none text-white" href="{{route('user.registration')}}">Зарегистрируйся</a>
-                    <a class="me-3 py-2 link-body-emphasis text-decoration-none text-white" href="{{route('user.login')}}">Войти</a>
+                    <a class="me-3 py-2 link-body-emphasis text-decoration-none text-white"
+                       href="{{route('user.registration')}}">Зарегистрируйся</a>
+                    <a class="me-3 py-2 link-body-emphasis text-decoration-none text-white"
+                       href="{{route('user.login')}}">Войти</a>
+                @elseif(Auth::user()->email == 'bahilinvit@mail.ru')
+                    <a class="me-3 py-2 link-body-emphasis text-decoration-none text-white"
+                       href="{{route('user.admin')}}">Панель управления</a>
+                    <a class="me-3 py-2 link-body-emphasis text-decoration-none text-white" href="/logout">Выйти</a>
                 @else
                     <a class="me-3 py-2 link-body-emphasis text-decoration-none text-white" href="/private">Личный
                         кабинет</a>

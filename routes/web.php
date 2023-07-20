@@ -36,14 +36,23 @@ Route::name('avto.')->group(function () {
 });
 
 
-Route::get('admin', function () {
-    if (Auth::user()->email != 'bahilinvit@mail.ru')
-        return redirect(route('user.private'));
-    return view('admin');
-})->name('admin');
+//Route::get('admin', function () {
+//    if (Auth::user()->email != 'bahilinvit@mail.ru')
+//        return redirect(route('user.private'));
+//    return view('admin');
+//})->name('admin');
+
 
 Route::name('user.')->group(function () {
     Route::view('/private', 'private')->middleware('auth')->name('private');
+
+    Route::get('admin', function () {
+        if (Auth::user()->email != 'bahilinvit@mail.ru')
+            return redirect(route('user.private'));
+        return view('admin');
+    })->name('admin');
+
+    Route::post('admin', [\App\Http\Controllers\AdminController::class, 'save']);
 
     Route::get('login', function () {
         if (Auth::check()) {
