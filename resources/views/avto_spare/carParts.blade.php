@@ -12,8 +12,8 @@ $detail = DB::table('avto_spare')->where('id', $_GET['spareId'])->first();
     <div class="container">
         <div class="spare-block">
             <div class="content row" id="contentSpare">
-                <h4>{{$detail->name}}</h4>
                 <div class="block-content-spare col-sm-8">
+                    <h4>{{$detail->name}}</h4>
                     <h4>{{$detail->price}}₽</h4> <br>
                     <div class="linkToOrder">
                         <a href="{{route('user.order')}}?detailId={{$detail->id}}" class="orderBtn">Заказать</a>

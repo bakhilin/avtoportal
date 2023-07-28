@@ -10,24 +10,42 @@ class AdminController extends Controller
 
     public function save(Request $request): \Illuminate\Http\RedirectResponse
     {
-        DB::table('avto_spare')->insert([
-            'name' => $request->input('nameOfSpare'),
-            'articul' => $request->input('articul'),
-            'type_avto_id' => $request->input('typeAvto'),
-            'type_id' => $request->input('type'),
-            'image_link' => $_FILES['linkToFile']['name'],
-            'price' => $request->input('price'),
-            'description' => $request->input('description')
-        ]);
 
-        $path = "img/".$_FILES['linkToFile']['name'];
+        if (isset($_POST['addNewElementModel'])) {
+            DB::table('avto_model')->insert([
+                'marka_id' => $request->input('markaAvtoForModel'),
+                'name' => $request->input('addNewModel'),
+                'release_date' => $request->input('dateOfRelease')
+            ]);
+        }
 
-        move_uploaded_file($_FILES['linkToFile']['tmp_name'], $path);
+        if (isset($_POST['addNewElementType'])) {
+            DB::table('avto_type_model')->insert([
+               'model_id' => $request->input('modelAvtoForType'),
+                'type_model' => $request->input('addNewModelType')
+            ]);
+        }
 
-        $lastId = DB::table('avto_spare')->select('id')->get()->last();
+        if (isset($_POST['spareBtn'])) {
+            DB::table('avto_spare')->insert([
+                'name' => $request->input('nameOfSpare'),
+                'articul' => $request->input('articul'),
+                'type_avto_id' => $request->input('typeAvto'),
+                'type_id' => $request->input('type'),
+                'image_link' => $_FILES['linkToFile']['name'],
+                'price' => $request->input('price'),
+                'description' => $request->input('description')
+            ]);
+
+            $path = "img/" . $_FILES['linkToFile']['name'];
+
+            move_uploaded_file($_FILES['linkToFile']['tmp_name'], $path);
+
+            $lastId = DB::table('avto_spare')->select('id')->get()->last();
+        }
+
 
         // загрузка доп изображений
-
 
 
         return redirect()->to(route('user.admin'));

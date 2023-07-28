@@ -2,27 +2,151 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: Roboto;
+    font-weight: 300;
 }
 
-html,body{
+html, body {
     height: 100%;
 }
 
 .wrapper {
     position: relative;
     min-height: 100%;
+    background: #f0f8ff;
 }
 
-#main-container {
-    padding-bottom: 10  0px;
+/*header styles*/
+.logo-name {
+    font-weight: bold;
+    color: black;
 }
 
-#footer {
+.header-links a {
+    color: black;
+}
+
+.header-links a {
+    font-weight: 400;
+    position: relative;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.header-links a:after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: -3px;
+    width: 0;
+    height: 2px; /* Высота линии */
+    background-color: black; /* Цвет подчеркивания при исчезании линии*/
+    transition: width 0.5s; /* Время эффекта */
+}
+
+.header-links a:hover:after {
+    content: "";
+    width: 100%;
+    display: block;
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: -3px;
+    height: 2px; /* Высота линии */
+    background-color: red; /* Цвет подчеркивания при появлении линии*/
+    transition: width 0.5s; /* Время эффекта */
+}
+
+.location {
+    margin-left: 15%;
+}
+
+/*forms*/
+.form-site {
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    background: azure;
+}
+
+.form-site input {
+    width: 80%;
+}
+
+.under-text {
+    font-size: 13px;
+}
+
+
+#table-head-list tr {
+    color: #1a202c;
+}
+
+/*Main catalog*/
+.list a {
+    text-decoration: none;
+    color: black;
+    font-weight: 400;
+}
+
+.list {
+    border-radius: 10px;
+    padding: 2px 0;
+    background: antiquewhite;
+    position: relative;
+}
+
+.list ul {
+    position: relative;
+    margin-bottom: 0px;
+}
+
+.list ul li {
+    position: relative;
+    left: 0;
+    list-style: none;
+    margin: 4px 0;
+    border-left: 2px solid #f50057;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.list ul li:hover {
+    left: 10px;
+}
+
+.list ul li span {
+    position: relative;
+    padding: 8px;
+    padding-left: 12px;
+    display: inline-block;
+    z-index: 1;
+    transition: 0.5s;
+    font-weight: 400;
+}
+
+.list ul li:hover span {
+    color: #111;
+}
+
+.list ul li:before {
+    content: "";
+    position: absolute;
     width: 100%;
-    height: 80px
+    height: 100%;
+    background: #f50057;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: 0.5s;
+}
+
+.list ul li:hover:before {
+    transform: scaleX(1);
+}
+
+
+#main-container {
+    padding-bottom: 10px;
 }
 
 #search {
@@ -37,8 +161,9 @@ html,body{
 }
 
 
-
 #cards-block {
+    display: flex;
+    width: 90%;
     margin: 10px 0;
 }
 
@@ -47,11 +172,11 @@ html,body{
 
 }
 
-.linkToOrder{
+.linkToOrder {
     margin: 20px 0;
 }
 
-.showPhone{
+.showPhone {
     background: rgba(102, 102, 102, 0.5);
     width: 100%;
     height: 100%;
@@ -82,7 +207,7 @@ html,body{
     display: block;
 }
 
-.close{
+.close {
     display: inline-block;
     border: 1px solid #0000cc;
     color: #0000cc;
@@ -91,10 +216,10 @@ html,body{
     text-decoration: none;
     background: #f2f2f2;
     font-size: 14pt;
-    cursor:pointer;
+    cursor: pointer;
 }
 
-.close:hover{
+.close:hover {
     background: #e6e6ff;
 }
 
@@ -103,3 +228,21 @@ html,body{
     margin: 5px 0;
     padding: 2px;
 }
+
+
+.type-deliver {
+    display: flex;
+}
+
+.type-deliver #input-myself-deliver {
+    background: #a0aec0;
+    text-align: center;
+    width: 70%;
+    margin-left: auto;
+}
+
+
+#content {
+    padding-bottom: 50px;
+}
+

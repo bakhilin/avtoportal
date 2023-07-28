@@ -15,7 +15,8 @@ use \Illuminate\Support\Facades\Auth;
 */
 
 
-Route::view('/', 'home ');
+Route::view('/', 'home');
+
 
 Route::name('avto.')->group(function () {
     Route::get('avto_spare/spare', function () {
@@ -46,6 +47,13 @@ Route::name('avto.')->group(function () {
 Route::name('user.')->group(function () {
     Route::view('/private', 'private')->middleware('auth')->name('private');
 
+    Route::get('deleteOrder', function () {
+       DB::table('avto_order')->where('id', $_GET['orderId'])->delete();
+        DB::table('avto_spare')->where('id', $_GET['spareId'])->delete();
+
+        return view('admin');
+    })->name('deleteOrder');
+
     Route::get('admin', function () {
         if (Auth::user()->email != 'bahilinvit@mail.ru')
             return redirect(route('user.private'));
@@ -58,6 +66,8 @@ Route::name('user.')->group(function () {
        }
         return view('login');
     })->name('order');
+
+    Route::post('order', [\App\Http\Controllers\OrderController::class,'store']);
 
     Route::post('admin', [\App\Http\Controllers\AdminController::class, 'save']);
 
@@ -87,6 +97,8 @@ Route::name('user.')->group(function () {
 
 Route::get('/', function () {
     $marka = DB::table('avto_marka')->get();
+    if (isset($_GET['detailId']))
+        DB::table('avto_spare')->where('id', $_GET['detailId'])->delete();
     return view('home', [
         'marka' => $marka
     ]);

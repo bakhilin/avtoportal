@@ -23,6 +23,8 @@ class LoginController extends Controller
         if (Auth::attempt($formFields)) {
             if (Auth::user()->email != 'bahilinvit@mail.ru')
                 return redirect()->intended('private');
+//            if (isset($_GET['detailId']))
+//                return redirect()->intended('order');
             return redirect()->intended('admin');
         }
 

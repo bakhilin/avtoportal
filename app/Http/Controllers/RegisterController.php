@@ -38,6 +38,7 @@ class RegisterController extends Controller
             $user->password = $request->input('password');
 
             Auth::login($user);
+
             return redirect()->to(route('user.private'));
         }
     }

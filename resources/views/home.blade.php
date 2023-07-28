@@ -13,25 +13,58 @@ if (isset($_GET['search'])) {
 
 @section('main_content')
 
-    <div class="container bg-white text-dark">
-        <ul>
-            <li>
-                <a href="{{route('avto.liquids')}}"> Масла и технические жидкости </a>
-            </li>
-            <li>
-                <a href="{{route('avto.parts')}}">Легковые запчасти</a>
-            </li>
-            <li>
-                <a href="{{route('avto.period_product')}}"> Сезонные товары </a>
-            </li>
+    <div class="container list">
+        <ul class="row">
+            <div class="col-sm-6">
+                <a href="{{route('avto.liquids')}}">
+                    <li>
+                          <span>
+                               Масла и технические жидкости
+                          </span>
+                    </li>
+                </a>
+            </div>
+            <div class="col-sm-6">
+                <a href="/">
+                    <li>
+                        <span>
+                            Легковые запчасти
+                        </span>
+                    </li>
+                </a>
+            </div>
+            <div class="col-sm-6">
+                <a href="{{route('avto.period_product')}}">
+                    <li>
+                        <span>
+                            Сезонные товары
+                        </span>
+                    </li>
+                </a>
+            </div>
+            <div class="col-sm-6">
+                <a href="{{route('avto.period_product')}}">
+                    <li>
+                        <span>
+                            Сезонные товары
+                        </span>
+                    </li>
+                </a>
+            </div>
         </ul>
     </div>
 
-    <div class="container">
+    <div class="container mt-5">
         <h2>Каталог легковых автозапчастей</h2>
-        <form action="" method="get" class="search-form">
-            <input type="search" name="search" id="search" class="search" placeholder="Поиск по названию">
-            <button type="submit">Поиск</button>
+        <form action="" method="get" class="search-form col-6">
+            <div class="row">
+                <div class="col-8">
+                    <input type="search" name="search" id="search" class="search" placeholder="Поиск по названию">
+                </div>
+                <div class="col-4">
+                    <button type="submit" class="btn btn-info">Поиск</button>
+                </div>
+            </div>
         </form>
 
         <div class="cards-block" id="cards-block">
@@ -40,7 +73,8 @@ if (isset($_GET['search'])) {
                     <div class="row g-0">
                         <div class="col-md-2">
                             <a href="">
-                                <img src="img/{{$spare->image_link}}" class="img-fluid mx-auto d-block" style="max-height: 135px; max-width: 180px" alt="">
+                                <img src="img/{{$spare->image_link}}" class="img-fluid mx-auto d-block"
+                                     style="max-height: 135px; max-width: 180px" alt="">
                             </a>
                         </div>
                         <div class="col-md-8">
@@ -48,7 +82,7 @@ if (isset($_GET['search'])) {
                                 <a href="{{route('avto.parts')}}?spareId={{$spare->id}}">
                                     <h5 class="card-title">{{$spare->name}}</h5>
                                 </a>
-                                <p class="card-text">{{$spare->description}}</p>
+{{--                                <p class="card-text"><span>{{$spare->description}}</span></p>--}}
                             </div>
                         </div>
                         <div class="col-md-2 position-relative">
@@ -60,6 +94,9 @@ if (isset($_GET['search'])) {
                         </div>
                     </div>
                 </div>
+                @if(Auth::check() and  Auth::user()->email == "bahilinvit@mail.ru")
+                    <a href="/?detailId={{$spare->id}}">Удалить товар</a>
+                @endif
             @endforeach
         </div>
     </div>
