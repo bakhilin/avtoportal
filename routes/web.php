@@ -25,6 +25,9 @@ Route::get('/clear', function () {
 
 Route::view('/', 'home');
 
+Route::get('/contacts', function () {
+   return view('contacts');
+});
 
 Route::name('avto.')->group(function () {
     Route::get('avto_spare/spare', function () {
