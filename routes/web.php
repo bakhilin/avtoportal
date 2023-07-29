@@ -15,6 +15,14 @@ use \Illuminate\Support\Facades\Auth;
 */
 
 
+Route::get('/clear', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('config:cache');
+    Artisan::call('view:clear');
+    Artisan::call('route:clear');
+    return "Сброс кэша выполнен!";
+});
+
 Route::view('/', 'home');
 
 
